@@ -22,3 +22,9 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     }
   ];
 };
+
+export const clearItemFromCart = (cartItems, cartItemToClear) => {
+  return cartItems.filter((item) => {
+    return item.id !== cartItemToClear.id;
+  });
+};
