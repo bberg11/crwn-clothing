@@ -21,17 +21,15 @@ class Shop extends React.Component {
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
-    const collectionsRef = firestore.collection('collections');
+    const { updateCollections } = this.props;
+    const collectionRef = firestore.collection('collections');
 
-    this.unsubscribeFromSnapshot = collectionsRef.onSnapshot(async (snapshot) => {
-      this.props.updateCollections(convertCollectionsSnapshotToMap(snapshot));
+    collectionRef.get().then(snapshot => {
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+      updateCollections(collectionsMap);
       this.setState({ isLoading: false });
     });
-  };
-
-  componentWillUnmount() {
-    this.unsubscribeFromSnapshot();
-  };
+  }
 
   render() {
     const { match } = this.props;
