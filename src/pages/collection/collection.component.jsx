@@ -9,7 +9,14 @@ import './collection.styles.scss';
 
 const Collection = ({ collection }) => (
   <div className="collection-page">
-    <h2>{ collection.title }</h2>
+    <h2 className="title">{ collection.title }</h2>
+    <div className="items">
+      {
+        collection.items.map((item) => (
+          <CollectionItem key={item.id} item={item} />
+        ))
+      }
+    </div>
   </div>
 );
 
