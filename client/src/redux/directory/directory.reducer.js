@@ -1,4 +1,4 @@
-const INITITAL_STATE = {
+const INITIAL_STATE = {
   sections: [
     {
       title: 'hats',
@@ -21,25 +21,25 @@ const INITITAL_STATE = {
     {
       title: 'womens',
       imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-      large: true,
+      size: 'large',
       id: 4,
       linkUrl: 'shop/womens'
     },
     {
       title: 'mens',
       imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-      large: true,
+      size: 'large',
       id: 5,
       linkUrl: 'shop/mens'
     }
   ]
-}
+};
 
-const DirectoryReducer = (state = INITITAL_STATE, action) => {
+const directoryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     default:
       return state;
-  };
+  }
 };
 
-export default DirectoryReducer;
+export default directoryReducer;

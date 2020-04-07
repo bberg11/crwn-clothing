@@ -1,12 +1,12 @@
-import { CartActionTypes } from './cart.types';
-import { addItemToCart, removeItemFromCart, clearLineItem } from './cart.utils';
+import CartActionTypes from './cart.types';
+import { addItemToCart, removeItemFromCart } from './cart.utils';
 
 const INITIAL_STATE = {
   hidden: true,
   cartItems: []
 };
 
-const CartReducer = (state = INITIAL_STATE, action) => {
+const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CartActionTypes.TOGGLE_CART_HIDDEN:
       return {
@@ -26,16 +26,13 @@ const CartReducer = (state = INITIAL_STATE, action) => {
     case CartActionTypes.CLEAR_ITEM_FROM_CART:
       return {
         ...state,
-        cartItems: clearLineItem(state.cartItems, action.payload)
-      }
-    case CartActionTypes.CLEAR_CART:
-      return {
-        ...state,
-        cartItems: []
-      }
+        cartItems: state.cartItems.filter(
+          cartItem => cartItem.id !== action.payload.id
+        )
+      };
     default:
       return state;
   }
-}
+};
 
-export default CartReducer;
+export default cartReducer;
