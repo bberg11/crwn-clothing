@@ -8,6 +8,7 @@ import { checkUserSession } from './redux/user/user.actions';
 
 import Header from './components/header/header.component';
 import Spinner from './components/spinner/spinner.component';
+import ErrorBoundary from './components/error-boundary/error-boundary.component';
 
 import './App.css';
 
@@ -32,14 +33,16 @@ const App = ({ currentUser, checkUserSession }) => {
   return (
     <div>
       <Header />
-      <Suspense fallback={<Spinner />}>
-        <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/shop' component={Shop} />
-          <Route exact path='/sign-in' render={signInRenderValue} />
-          <Route exact path='/checkout' component={Checkout} />
-        </Switch>
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            <Route exact path='/' component={Homepage} />
+            <Route path='/shop' component={Shop} />
+            <Route exact path='/sign-in' render={signInRenderValue} />
+            <Route exact path='/checkout' component={Checkout} />
+          </Switch>
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
