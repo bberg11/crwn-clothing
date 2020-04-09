@@ -1,27 +1,32 @@
 .header {
-  padding: 0 80px;
-  height: 70px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  align-items: center;
+  padding: 20px 0;
+}
 
-  .logo-container {
-    height: 100%;
-    width: 70px;
-    padding: 25px;
+.header__logo-wrap {
+}
+
+.header__logo {
+}
+
+.header__utilities {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header__utility-item {
+  padding: 0 15px;
+
+  &:last-child {
+    padding-right: 0;
   }
+}
 
-  .options {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    .option {
-      padding: 10px 15px;
-      cursor: pointer;
-    }
-  }
+.header__utility-link {
+  text-transform: uppercase;
 }

@@ -1,0 +1,19 @@
+.cart-button {
+  position: relative;
+  padding: 0;
+  background: 0;
+  border: 0;
+}
+
+.cart-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.cart-button__count {
+  position: absolute;
+  top: calc(50% + 2px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+}
