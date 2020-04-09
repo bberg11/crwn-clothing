@@ -38,6 +38,18 @@ const CheckoutPage = ({ cartItems, total }) => (
 
     <div className="checkout__total">TOTAL: ${total}</div>
 
+    <div className="checkout__payment-message">
+      *See{' '}
+      <a
+        href="https://stripe.com/docs/testing"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        https://stripe.com/docs/testing
+      </a>{' '}
+      for test credentials*
+    </div>
+
     <StripeButton price={total} />
   </div>
 );
