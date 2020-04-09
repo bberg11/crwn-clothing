@@ -7,7 +7,7 @@ import {
 } from '../../redux/user/user.actions';
 
 import FormInput from '../form-input/form-input.component';
-import CustomButton from '../custom-button/custom-button.component';
+import Button from '../button/button.component';
 
 import './sign-in.styles.scss';
 
@@ -53,10 +53,22 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
           label="password"
           required
         />
-        <CustomButton type="submit">Sign in</CustomButton>
-        <CustomButton type="button" onClick={googleSignInStart} isGoogleSignIn>
-          Sign in with Google
-        </CustomButton>
+        <div className="sign-in__actions">
+          <div className="sign-in__action">
+            <Button type="submit" modifiers="button--full-width">
+              Sign in
+            </Button>
+          </div>
+          <div className="sign-in__action">
+            <Button
+              type="button"
+              onClick={googleSignInStart}
+              modifiers="button--google button--full-width"
+            >
+              Sign in with Google
+            </Button>
+          </div>
+        </div>
       </form>
     </div>
   );

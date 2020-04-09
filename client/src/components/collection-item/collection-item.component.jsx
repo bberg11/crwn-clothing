@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { addItem } from '../../redux/cart/cart.actions';
 
-import CustomButton from '../custom-button/custom-button.component';
+import Button from '../button/button.component';
 
 import './collection-item.styles.scss';
 
@@ -20,9 +20,12 @@ const CollectionItem = ({ item, addItem }) => (
       <p className="collection-item__price">{item.price}</p>
     </div>
     <div className="collection-item__add-to-cart">
-      <CustomButton onClick={() => addItem(item)} inverted>
+      <Button
+        onClick={() => addItem(item)}
+        modifiers="button--full-width button--inverted"
+      >
         Add to cart
-      </CustomButton>
+      </Button>
     </div>
   </div>
 );

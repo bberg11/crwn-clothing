@@ -7,8 +7,12 @@ import './sign-in-and-sign-up.styles.scss';
 
 const SignInAndSignUpPage = () => (
   <div className="sign-in-and-sign-up">
-    <SignIn />
-    <SignUp />
+    <div className="sign-in-and-sign-up__cell">
+      <SignIn />
+    </div>
+    <div className="sign-in-and-sign-up__cell">
+      <SignUp />
+    </div>
   </div>
 );
 

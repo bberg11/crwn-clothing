@@ -29,5 +29,10 @@
 }
 
 .header__utility-link {
+  padding: 0;
+  font: inherit;
   text-transform: uppercase;
+  background: 0;
+  border: 0;
+  cursor: pointer;
 }

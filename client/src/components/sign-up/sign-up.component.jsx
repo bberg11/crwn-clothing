@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { signUpStart } from '../../redux/user/user.actions';
 
 import FormInput from '../form-input/form-input.component';
-import CustomButton from '../custom-button/custom-button.component';
+import Button from '../button/button.component';
 
 import './sign-up.styles.scss';
 
@@ -72,7 +72,13 @@ const SignUp = ({ signUpStart }) => {
           label="Confirm Password"
           required
         />
-        <CustomButton type="submit">SIGN UP</CustomButton>
+        <div className="sign-up__actions">
+          <div className="sign-up__action">
+            <Button type="submit" modifiers="button--full-width">
+              SIGN UP
+            </Button>
+          </div>
+        </div>
       </form>
     </div>
   );
