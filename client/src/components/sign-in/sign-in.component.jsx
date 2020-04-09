@@ -55,7 +55,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
         />
         <div className="sign-in__actions">
           <div className="sign-in__action">
-            <Button type="submit" modifiers="button--full-width">
+            <Button type="submit" className="button button--full-width">
               Sign in
             </Button>
           </div>
@@ -63,7 +63,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
             <Button
               type="button"
               onClick={googleSignInStart}
-              modifiers="button--google button--full-width"
+              className="button button--google button--full-width"
             >
               Sign in with Google
             </Button>

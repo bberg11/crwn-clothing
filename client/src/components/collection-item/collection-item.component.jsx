@@ -22,7 +22,7 @@ const CollectionItem = ({ item, addItem }) => (
     <div className="collection-item__add-to-cart">
       <Button
         onClick={() => addItem(item)}
-        modifiers="button--full-width button--inverted"
+        className="button button--full-width button--inverted"
       >
         Add to cart
       </Button>

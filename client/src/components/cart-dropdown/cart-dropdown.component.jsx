@@ -24,7 +24,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
     </div>
     <div className="cart-dropdown__action">
       <Button
-        modifiers="button--full-width"
+        className="button button--full-width"
         onClick={() => {
           history.push('/checkout');
           dispatch(toggleCartHidden());

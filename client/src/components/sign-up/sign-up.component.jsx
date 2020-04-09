@@ -74,7 +74,7 @@ const SignUp = ({ signUpStart }) => {
         />
         <div className="sign-up__actions">
           <div className="sign-up__action">
-            <Button type="submit" modifiers="button--full-width">
+            <Button type="submit" className="button button--full-width">
               SIGN UP
             </Button>
           </div>
