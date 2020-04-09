@@ -1,0 +1,17 @@
+.item-list {
+}
+
+.item-list__items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item-list__item {
+  margin: 0 0 10px;
+  width: 100%;
+
+  @media screen and (min-width: 600px) {
+    padding: 0 5px;
+    width: 25%;
+  }
+}

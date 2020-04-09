@@ -10,18 +10,20 @@ import './collection-item.styles.scss';
 const CollectionItem = ({ item, addItem }) => (
   <div className="collection-item">
     <div
-      className="image"
+      className="collection-item__image"
       style={{
         backgroundImage: `url(${item.imageUrl})`,
       }}
-    ></div>
-    <div className="collection-footer">
-      <span className="name">{item.name}</span>
-      <span className="price">{item.price}</span>
+    />
+    <div className="collection-item__info">
+      <p className="collection-item__name">{item.name}</p>
+      <p className="collection-item__price">{item.price}</p>
     </div>
-    <CustomButton onClick={() => addItem(item)} inverted>
-      Add to cart
-    </CustomButton>
+    <div className="collection-item__add-to-cart">
+      <CustomButton onClick={() => addItem(item)} inverted>
+        Add to cart
+      </CustomButton>
+    </div>
   </div>
 );
 
