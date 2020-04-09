@@ -11,21 +11,28 @@ import './checkout-item.styles.scss';
 
 const CheckoutItem = ({ item, clearItem, addItem, removeItem }) => (
   <div className="checkout-item">
-    <div className="image-container">
-      <img src={item.imageUrl} alt="item" />
+    <div className="checkout-item__image-container">
+      <img
+        className="checkout-item__image"
+        src={item.imageUrl}
+        alt={item.name}
+      />
     </div>
-    <span className="name">{item.name}</span>
-    <span className="quantity">
-      <div className="arrow" onClick={() => removeItem(item)}>
+    <span className="checkout-item__name">{item.name}</span>
+    <span className="checkout-item__quantity">
+      <div className="checkout-item__arrow" onClick={() => removeItem(item)}>
         &#10094;
       </div>
-      <span className="value">{item.quantity}</span>
-      <div className="arrow" onClick={() => addItem(item)}>
+      <span className="checkout-item__value">{item.quantity}</span>
+      <div className="checkout-item__arrow" onClick={() => addItem(item)}>
         &#10095;
       </div>
     </span>
-    <span className="price">{item.price}</span>
-    <div className="remove-button" onClick={() => clearItem(item)}>
+    <span className="checkout-item__price">{item.price}</span>
+    <div
+      className="checkout-item__remove-button"
+      onClick={() => clearItem(item)}
+    >
       &#10005;
     </div>
   </div>

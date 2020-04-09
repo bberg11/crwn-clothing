@@ -13,28 +13,31 @@ import StripeButton from '../../components/stripe-button/stripe-button.component
 import './checkout.styles.scss';
 
 const CheckoutPage = ({ cartItems, total }) => (
-  <div className="checkout-page">
-    <div className="checkout-header">
-      <div className="header-block">
+  <div className="checkout">
+    <div className="checkout__header">
+      <div className="checkout__header-cell">
         <span>Product</span>
       </div>
-      <div className="header-block">
+      <div className="checkout__header-cell">
         <span>Description</span>
       </div>
-      <div className="header-block">
+      <div className="checkout__header-cell">
         <span>Quantity</span>
       </div>
-      <div className="header-block">
+      <div className="checkout__header-cell">
         <span>Price</span>
       </div>
-      <div className="header-block">
+      <div className="checkout__header-cell">
         <span>Remove</span>
       </div>
     </div>
+
     {cartItems.map((cartItem) => (
       <CheckoutItem key={cartItem.id} item={cartItem} />
     ))}
-    <div className="total">TOTAL: ${total}</div>
+
+    <div className="checkout__total">TOTAL: ${total}</div>
+
     <StripeButton price={total} />
   </div>
 );

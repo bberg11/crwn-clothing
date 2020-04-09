@@ -1,31 +1,31 @@
-.checkout-page {
-  width: 55%;
-  min-height: 90vh;
+.checkout {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px auto 0;
+  margin: 50px auto 25px;
+  max-width: 660px;
+}
 
-  .checkout-header {
-    width: 100%;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid darkgrey;
+.checkout__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
+  border-bottom: 1px solid darkgrey;
+}
 
-    .header-block {
-      text-transform: capitalize;
-      width: 23%;
+.checkout__header-cell {
+  width: 23%;
+  text-transform: capitalize;
 
-      &:last-child {
-        width: 8%;
-      }
-    }
+  &:last-child {
+    width: 8%;
+    min-width: 45px;
   }
+}
 
-  .total {
-    margin-top: 30px;
-    margin-left: auto;
-    font-size: 36px;
-  }
+.checkout__total {
+  margin: 30px 0 0;
+  font-size: 36px;
+  align-self: flex-end;
 }
