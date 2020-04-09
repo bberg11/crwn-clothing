@@ -3,17 +3,19 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-  apiKey: "AIzaSyA843TkUfS2gfcPUhDVRKkIrDj3pX5tp_g",
-  authDomain: "crwn-db-aa2d3.firebaseapp.com",
-  databaseURL: "https://crwn-db-aa2d3.firebaseio.com",
-  projectId: "crwn-db-aa2d3",
-  storageBucket: "crwn-db-aa2d3.appspot.com",
-  messagingSenderId: "957450536389",
-  appId: "1:957450536389:web:d668c4d2d46e24afecb7ac"
+  apiKey: 'AIzaSyA843TkUfS2gfcPUhDVRKkIrDj3pX5tp_g',
+  authDomain: 'crwn-db-aa2d3.firebaseapp.com',
+  databaseURL: 'https://crwn-db-aa2d3.firebaseio.com',
+  projectId: 'crwn-db-aa2d3',
+  storageBucket: 'crwn-db-aa2d3.appspot.com',
+  messagingSenderId: '957450536389',
+  appId: '1:957450536389:web:d668c4d2d46e24afecb7ac',
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-  if (!userAuth) { return; }
+  if (!userAuth) {
+    return;
+  }
 
   const userRef = await firestore.doc(`users/${userAuth.uid}`);
 
@@ -28,7 +30,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       console.log('error creating user', error.message);
@@ -36,11 +38,14 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
 
   return userRef;
-}
+};
 
 firebase.initializeApp(config);
 
-export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) => {
+export const addCollectionsAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
   const collectionRef = firestore.collection(collectionKey);
   const batch = firestore.batch();
 
@@ -61,8 +66,8 @@ export const convertCollectionsSnapshotToMap = (snapshot) => {
       routeName: encodeURI(title.toLowerCase()),
       id: doc.id,
       title,
-      items
-    }
+      items,
+    };
   });
 
   return collections.reduce((accumulator, collection) => {

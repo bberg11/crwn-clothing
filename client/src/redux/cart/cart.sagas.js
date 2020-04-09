@@ -6,14 +6,12 @@ import { clearCart } from './cart.actions';
 
 export function* clearCartOnSignOut() {
   yield put(clearCart());
-};
+}
 
 export function* onSignOut() {
   yield takeLatest(UserActionTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut);
-};
+}
 
 export function* cartSagas() {
-  yield all([
-    call(onSignOut)
-  ])
-};
+  yield all([call(onSignOut)]);
+}

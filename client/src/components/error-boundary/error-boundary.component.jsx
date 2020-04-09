@@ -7,20 +7,20 @@ class ErrorBoundary extends React.Component {
     super();
 
     this.state = {
-      hasErrored: false
+      hasErrored: false,
     };
-  };
+  }
 
   static getDerivedStateFromError(error) {
     return { hasErrored: true };
-  };
+  }
 
   componentDidCatch(error, info) {
     console.log({
       error,
-      info
+      info,
     });
-  };
+  }
 
   render() {
     if (this.state.hasErrored) {
@@ -33,7 +33,7 @@ class ErrorBoundary extends React.Component {
     }
 
     return this.props.children;
-  };
-};
+  }
+}
 
 export default ErrorBoundary;

@@ -13,18 +13,20 @@ const StripeButton = ({ price }) => {
       method: 'post',
       data: {
         amount: priceForStripe,
-        token
-      }
-    }).then((response) => {
-      alert('Payment successful');
-    }).catch((error) => {
-      console.log('Payment error: ' + JSON.parse(error));
-      alert('There was an error with your payment');
-    });
+        token,
+      },
+    })
+      .then((response) => {
+        alert('Payment successful');
+      })
+      .catch((error) => {
+        console.log('Payment error: ' + JSON.parse(error));
+        alert('There was an error with your payment');
+      });
   };
 
   return (
-    <StripeCheckout 
+    <StripeCheckout
       label="Pay Now"
       name="Crwn Clothing"
       shippingAddress
@@ -36,7 +38,7 @@ const StripeButton = ({ price }) => {
       token={onToken}
       stripeKey={publishableKey}
     />
-  )
+  );
 };
 
 export default StripeButton;

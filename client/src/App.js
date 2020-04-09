@@ -14,7 +14,9 @@ import './App.css';
 
 const Homepage = lazy(() => import('./pages/homepage/homepage.component'));
 const Shop = lazy(() => import('./pages/shop/shop.component'));
-const SignInAndSignUpPage = lazy(() => import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component'));
+const SignInAndSignUpPage = lazy(() =>
+  import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component')
+);
 const Checkout = lazy(() => import('./pages/checkout/checkout.component'));
 
 const App = ({ currentUser, checkUserSession }) => {
@@ -36,10 +38,10 @@ const App = ({ currentUser, checkUserSession }) => {
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <Switch>
-            <Route exact path='/' component={Homepage} />
-            <Route path='/shop' component={Shop} />
-            <Route exact path='/sign-in' render={signInRenderValue} />
-            <Route exact path='/checkout' component={Checkout} />
+            <Route exact path="/" component={Homepage} />
+            <Route path="/shop" component={Shop} />
+            <Route exact path="/sign-in" render={signInRenderValue} />
+            <Route exact path="/checkout" component={Checkout} />
           </Switch>
         </Suspense>
       </ErrorBoundary>
@@ -48,11 +50,11 @@ const App = ({ currentUser, checkUserSession }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  checkUserSession: () => dispatch(checkUserSession())
+  checkUserSession: () => dispatch(checkUserSession()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
