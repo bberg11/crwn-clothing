@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
-const StripeButton = ({ price }) => {
+import { saveOrderStart } from '../../redux/orders/orders.actions';
+
+const StripeButton = ({ price, saveOrderStart }) => {
   const priceForStripe = price * 100;
   const publishableKey = 'pk_test_jyzsWUAvRLVz4F7CrgCMitXd00519kwIz1';
 
   const onToken = (token) => {
-    console.log(token);
     axios({
       url: '/payment',
       method: 'post',
@@ -16,8 +18,13 @@ const StripeButton = ({ price }) => {
         token,
       },
     })
-      .then((response) => {
-        alert('Payment successful');
+      .then(({ data: { success } }) => {
+        const payment = {
+          ...success.source,
+          receipt: success.receipt_url,
+        };
+
+        saveOrderStart(payment);
       })
       .catch((error) => {
         console.log('Payment error: ' + JSON.parse(error));
@@ -41,4 +48,8 @@ const StripeButton = ({ price }) => {
   );
 };
 
-export default StripeButton;
+const mapDispatchToProps = (dispatch) => ({
+  saveOrderStart: (payment) => dispatch(saveOrderStart(payment)),
+});
+
+export default connect(null, mapDispatchToProps)(StripeButton);

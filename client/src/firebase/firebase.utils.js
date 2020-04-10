@@ -40,6 +40,16 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const createOrderDocument = async (user, order) => {
+  const userId = user ? user.id : 'GUEST';
+  const orderRef = firestore.collection('orders');
+  const newOrderDocRef = orderRef.doc();
+
+  await newOrderDocRef.set({ userId, ...order });
+
+  return newOrderDocRef;
+};
+
 export const getUserCartRef = async (userId) => {
   const cartsRef = firestore.collection('carts').where('userId', '==', userId);
   const snapShot = await cartsRef.get();
@@ -71,6 +81,16 @@ export const addCollectionsAndDocuments = async (
   });
 
   return await batch.commit();
+};
+
+export const convertOrdersSnapshotToMap = (snapshot) => {
+  const orders = snapshot.docs.map((doc) => {
+    const { cartItems, payment } = doc.data();
+
+    return { cartItems, payment };
+  });
+
+  return orders;
 };
 
 export const convertCollectionsSnapshotToMap = (snapshot) => {

@@ -11,6 +11,8 @@ import {
   signUpFailure,
 } from './user.actions';
 
+import { fetchOrdersStart } from '../orders/orders.actions';
+
 import {
   auth,
   googleProvider,
@@ -27,6 +29,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
     );
     const userSnapshot = yield userRef.get();
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
+    yield put(fetchOrdersStart(userSnapshot.id));
   } catch (error) {
     yield put(signInFailure(error));
   }
