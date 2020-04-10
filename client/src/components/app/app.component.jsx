@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -18,6 +18,7 @@ const SignInAndSignUpPage = lazy(() =>
   import('../../pages/sign-in-and-sign-up/sign-in-and-sign-up.component')
 );
 const Checkout = lazy(() => import('../../pages/checkout/checkout.component'));
+const Account = lazy(() => import('../../pages/account/account.component'));
 
 const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
@@ -26,7 +27,15 @@ const App = ({ currentUser, checkUserSession }) => {
 
   const signInRenderValue = () => {
     if (currentUser) {
-      return <Redirect to="/" />;
+      return <Account />;
+    } else {
+      return <SignInAndSignUpPage />;
+    }
+  };
+
+  const accountRenderValue = () => {
+    if (currentUser) {
+      return <Account />;
     } else {
       return <SignInAndSignUpPage />;
     }
@@ -41,6 +50,7 @@ const App = ({ currentUser, checkUserSession }) => {
             <Switch>
               <Route exact path="/" component={Homepage} />
               <Route path="/shop" component={Shop} />
+              <Route exact path="/account" render={accountRenderValue} />
               <Route exact path="/sign-in" render={signInRenderValue} />
               <Route exact path="/checkout" component={Checkout} />
             </Switch>

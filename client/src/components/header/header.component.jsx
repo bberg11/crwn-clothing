@@ -13,7 +13,7 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './header.styles.scss';
 
-const Header = ({ currentUser, hidden, signOutStart }) => (
+const Header = ({ currentUser, cartIsHidden, signOutStart }) => (
   <div className="header">
     <Link className="header__logo-wrap" to="/">
       <Logo className="header__logo" />
@@ -26,32 +26,31 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
       </li>
 
       <li className="header__utility-item">
+        <Link className="header__utility-link" to="/account">
+          Account
+        </Link>
         {currentUser ? (
           <button
             type="button"
-            className="header__utility-link"
+            className="header__log-out"
             onClick={signOutStart}
           >
-            Sign Out
+            &nbsp; (Sign Out)
           </button>
-        ) : (
-          <Link className="header__utility-link" to="/sign-in">
-            Sign In
-          </Link>
-        )}
+        ) : null}
       </li>
 
       <li className="header__utility-item">
         <CartButton />
       </li>
     </ul>
-    {hidden ? null : <CartDropdown />}
+    {cartIsHidden ? null : <CartDropdown />}
   </div>
 );
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  hidden: selectCartHidden,
+  cartIsHidden: selectCartHidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({
