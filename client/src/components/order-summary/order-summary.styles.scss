@@ -1,0 +1,27 @@
+.order-summary__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
+  border-bottom: 1px solid darkgrey;
+}
+
+.order-summary__header-cell {
+  width: 23%;
+  text-transform: capitalize;
+
+  &:last-child {
+    width: 8%;
+    min-width: 45px;
+
+    .order-detail & {
+      visibility: hidden;
+    }
+  }
+}
+
+.order-summary__total {
+  margin: 30px 0 0;
+  font-size: 36px;
+  align-self: flex-end;
+}

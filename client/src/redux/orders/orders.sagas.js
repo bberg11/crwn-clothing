@@ -6,9 +6,11 @@ import {
   saveOrderFailure,
   fetchOrdersSuccess,
   fetchOrdersFailure,
+  setCurrentOrder,
 } from './orders.actions';
 import { selectCurrentUser } from '../user/user.selectors';
 import { selectCartItems } from '../cart/cart.selectors';
+import { clearCart } from '../cart/cart.actions';
 
 import {
   firestore,
@@ -22,17 +24,20 @@ export function* pushOrderToFirebase({ payload: payment }) {
   const order = yield {
     cartItems,
     payment,
+    createdAt: new Date(),
   };
 
   try {
     yield call(createOrderDocument, user, order);
     yield put(saveOrderSuccess());
+    yield put(setCurrentOrder(order));
+    yield put(clearCart());
   } catch (error) {
     yield put(saveOrderFailure(error));
   }
 }
 
-export function* saveOrdersToUserState({ payload: userId }) {
+export function* saveOrdersToState({ payload: userId }) {
   try {
     const ordersRef = firestore
       .collection('orders')
@@ -51,7 +56,7 @@ export function* onSaveOrderStart() {
 }
 
 export function* onFetchOrdersStart() {
-  yield takeLatest(OrdersActionTypes.FETCH_ORDERS_START, saveOrdersToUserState);
+  yield takeLatest(OrdersActionTypes.FETCH_ORDERS_START, saveOrdersToState);
 }
 
 export function* ordersSagas() {

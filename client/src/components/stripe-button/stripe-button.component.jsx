@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 import { saveOrderStart } from '../../redux/orders/orders.actions';
 
-const StripeButton = ({ price, saveOrderStart }) => {
+const StripeButton = ({ price, saveOrderStart, history }) => {
   const priceForStripe = price * 100;
   const publishableKey = 'pk_test_jyzsWUAvRLVz4F7CrgCMitXd00519kwIz1';
 
@@ -22,9 +23,11 @@ const StripeButton = ({ price, saveOrderStart }) => {
         const payment = {
           ...success.source,
           receipt: success.receipt_url,
+          total: price,
         };
 
         saveOrderStart(payment);
+        history.push('/confirmation');
       })
       .catch((error) => {
         console.log('Payment error: ' + JSON.parse(error));
@@ -52,4 +55,4 @@ const mapDispatchToProps = (dispatch) => ({
   saveOrderStart: (payment) => dispatch(saveOrderStart(payment)),
 });
 
-export default connect(null, mapDispatchToProps)(StripeButton);
+export default withRouter(connect(null, mapDispatchToProps)(StripeButton));

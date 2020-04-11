@@ -1,8 +1,8 @@
 import { UserActionTypes } from './user.types';
-import { OrdersActionTypes } from '../orders/orders.types';
 
 const INITIAL_STATE = {
   currentUser: null,
+  currentOrder: null,
   error: null,
 };
 
@@ -26,14 +26,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload,
-      };
-    case OrdersActionTypes.FETCH_ORDERS_SUCCESS:
-      return {
-        ...state,
-        currentUser: {
-          ...state.currentUser,
-          orders: action.payload,
-        },
       };
     default:
       return state;

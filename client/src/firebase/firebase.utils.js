@@ -85,9 +85,9 @@ export const addCollectionsAndDocuments = async (
 
 export const convertOrdersSnapshotToMap = (snapshot) => {
   const orders = snapshot.docs.map((doc) => {
-    const { cartItems, payment } = doc.data();
+    const { cartItems, payment, createdAt } = doc.data();
 
-    return { cartItems, payment };
+    return { cartItems, payment, createdAt, id: doc.id };
   });
 
   return orders;

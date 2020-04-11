@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-import OrderHistory from '../../components/order-history/order-history.component';
+import OrderHistoryContainer from '../../components/order-history/order-history.container';
 
 import './account.styles.scss';
 
@@ -13,7 +13,7 @@ const Account = ({ currentUser }) => (
     <h1 className="account__title">Account</h1>
     <p className="account__sub-title">Welcome, {currentUser.displayName}</p>
 
-    <OrderHistory />
+    <OrderHistoryContainer />
   </section>
 );
 

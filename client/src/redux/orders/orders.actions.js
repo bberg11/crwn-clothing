@@ -28,3 +28,8 @@ export const fetchOrdersFailure = (error) => ({
   type: OrdersActionTypes.FETCH_ORDERS_FAILURE,
   payload: error,
 });
+
+export const setCurrentOrder = (order) => ({
+  type: OrdersActionTypes.SET_CURRENT_ORDER,
+  payload: order,
+});
