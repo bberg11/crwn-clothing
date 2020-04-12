@@ -2,19 +2,9 @@ import { createSelector } from 'reselect';
 
 const selectOrders = (state) => state.orders;
 
-export const selectCurrentOrderIsSaving = createSelector(
-  [selectOrders],
-  (orders) => orders.currentOrderIsSaving
-);
-
 export const selectCurrentOrder = createSelector(
   [selectOrders],
   (orders) => orders.currentOrder
-);
-
-export const selectOrderHistoryIsFetching = createSelector(
-  [selectOrders],
-  (orders) => orders.orderHistoryIsFetching
 );
 
 export const selectOrderHistory = createSelector(

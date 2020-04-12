@@ -1,11 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-import { selectOrder } from '../../redux/orders/orders.selectors';
 
 import OrderSummary from '../order-summary/order-summary.component';
 
 import './order-detail.styles.scss';
+
+const date = (createdAt) => {
+  if (typeof createdAt === 'object') {
+    return new Date(createdAt.seconds * 1000).toLocaleDateString();
+  } else {
+    return new Date(createdAt).toLocaleDateString();
+  }
+};
 
 const OrderDetail = ({ order }) => (
   <section className="order-detail">
@@ -16,7 +21,7 @@ const OrderDetail = ({ order }) => (
     </h2>
     <dl>
       <dt>Date: </dt>
-      <dd>{new Date(order.createdAt.seconds * 1000).toLocaleDateString()}</dd>
+      <dd>{date(order.createdAt)}</dd>
       <dt>Name: </dt>
       <dd>{order.payment.name}</dd>
       <dt>Payment: </dt>
@@ -34,8 +39,4 @@ const OrderDetail = ({ order }) => (
   </section>
 );
 
-const mapStateToProps = (state, ownProps) => ({
-  order: selectOrder(ownProps.orderId)(state),
-});
-
-export default connect(mapStateToProps)(OrderDetail);
+export default OrderDetail;

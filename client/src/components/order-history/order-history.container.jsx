@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectOrderHistoryIsFetching } from '../../redux/orders/orders.selectors';
+import { selectOrderHistory } from '../../redux/orders/orders.selectors';
 
 import WithSpinner from '../with-spinner/with-spinner.component';
 import OrderHistory from '../order-history/order-history.component';
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: selectOrderHistoryIsFetching,
+  isLoading: (state) => !selectOrderHistory(state),
 });
 
 const OrderHistoryContainer = compose(

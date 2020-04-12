@@ -4,23 +4,17 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectCurrentOrder } from '../../redux/orders/orders.selectors';
 
+import OrderDetail from '../../components/order-detail/order-detail.component';
+
 import './confirmation.styles.scss';
 
-const Confirmation = ({ currentOrder }) => {
-  const { cartItems, payment } = currentOrder;
+const Confirmation = ({ currentOrder }) => (
+  <section className="confirmation">
+    <h1 className="confirmation__title">Thank you for your order!</h1>
 
-  return (
-    <section className="confirmation">
-      <h1 className="confirmation__title">Thank you for your order!</h1>
-
-      <h2 className="confirmation__sub-title">Order Details</h2>
-      {console.log(cartItems)}
-
-      <h2 className="confirmation__sub-title">Payment Details</h2>
-      {console.log(payment)}
-    </section>
-  );
-};
+    <OrderDetail order={currentOrder} />
+  </section>
+);
 
 const mapStateToProps = createStructuredSelector({
   currentOrder: selectCurrentOrder,
