@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -13,7 +14,7 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import './header.styles.scss';
 
-const Header = ({ currentUser, cartIsHidden, signOutStart }) => (
+const Header = ({ currentUser, cartIsHidden, signOutStart, history }) => (
   <div className="header">
     <Link className="header__logo-wrap" to="/">
       <Logo className="header__logo" />
@@ -33,7 +34,10 @@ const Header = ({ currentUser, cartIsHidden, signOutStart }) => (
           <button
             type="button"
             className="header__log-out"
-            onClick={signOutStart}
+            onClick={() => {
+              history.push('/account');
+              signOutStart();
+            }}
           >
             &nbsp; (Sign Out)
           </button>
@@ -57,4 +61,4 @@ const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
