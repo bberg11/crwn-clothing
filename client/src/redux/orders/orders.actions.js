@@ -14,9 +14,8 @@ export const saveOrderFailure = (error) => ({
   payload: error,
 });
 
-export const fetchOrdersStart = (userId) => ({
+export const fetchOrdersStart = () => ({
   type: OrdersActionTypes.FETCH_ORDERS_START,
-  payload: userId,
 });
 
 export const fetchOrdersSuccess = (orders) => ({

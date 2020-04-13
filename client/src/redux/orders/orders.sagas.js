@@ -37,17 +37,21 @@ export function* pushOrderToFirebase({ payload: payment }) {
   }
 }
 
-export function* saveOrdersToState({ payload: userId }) {
-  try {
-    const ordersRef = firestore
-      .collection('orders')
-      .where('userId', '==', userId);
-    const snapshot = yield ordersRef.get();
-    const orders = yield call(convertOrdersSnapshotToMap, snapshot);
+export function* saveOrdersToState() {
+  const user = yield select(selectCurrentUser);
 
-    yield put(fetchOrdersSuccess(orders));
-  } catch (error) {
-    yield put(fetchOrdersFailure(error));
+  if (user) {
+    try {
+      const ordersRef = firestore
+        .collection('orders')
+        .where('userId', '==', user.id);
+      const snapshot = yield ordersRef.get();
+      const orders = yield call(convertOrdersSnapshotToMap, snapshot);
+
+      yield put(fetchOrdersSuccess(orders));
+    } catch (error) {
+      yield put(fetchOrdersFailure(error));
+    }
   }
 }
 
@@ -56,7 +60,13 @@ export function* onSaveOrderStart() {
 }
 
 export function* onFetchOrdersStart() {
-  yield takeLatest(OrdersActionTypes.FETCH_ORDERS_START, saveOrdersToState);
+  yield takeLatest(
+    [
+      OrdersActionTypes.FETCH_ORDERS_START,
+      OrdersActionTypes.SAVE_ORDER_SUCCESS,
+    ],
+    saveOrdersToState
+  );
 }
 
 export function* ordersSagas() {
